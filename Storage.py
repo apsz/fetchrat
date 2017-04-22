@@ -49,7 +49,7 @@ def import_xml_tree():
                 version_patches.append((patch.text, patch_url))
             cached_data[version.get('version')] = version_patches
         return cached_data
-    except (EnvironmentError, IOError) as import_err:
+    except (xml.parsers.expat.ExpatError) as import_err:
         print('Error: {}'.format(import_err))
         return False
 

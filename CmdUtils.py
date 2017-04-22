@@ -13,9 +13,11 @@ def get_str(msg, input_type='string', valid=None, default=None, min_len=0, max_l
         user_string_len = len(user_input)
         if ((not min_len or min_len <= user_string_len) and
                 (not max_len or max_len >= user_string_len)):
-            if user_input in valid:
-                return user_input
-            print('Valid options: {}'.format(valid))
+            if valid:
+                if user_input in valid:
+                    return user_input
+                continue
+            return user_input
         else:
             print('{} must be between {} and {} long.'.format(input_type, min_len, max_len))
 
@@ -33,5 +35,5 @@ def get_int(msg, input_type='integer', default=None, min_val=0, max_val=100):
                 return user_input
             print('{} must be between {} and {}.'.format(input_type, min_val, max_val))
         except ValueError:
-            print('Error: not an integer.')
+            print('Not an integer.')
 

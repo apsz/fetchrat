@@ -45,10 +45,9 @@ class ErrataLinksGatherer(threading.Thread):
 
 class DownloaderWorker(threading.Thread):
 
-    def __init__(self, download_queue, result_queue, save_path):
+    def __init__(self, download_queue, save_path):
         super().__init__()
         self.download_queue = download_queue
-        self.result_queue = result_queue
         self.save_path = save_path or '.'
 
     def run(self):
