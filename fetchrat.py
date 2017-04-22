@@ -48,7 +48,7 @@ def get_errata_pages(all_erratas_index_url, only_latest_version=True):
         print('Cannot open {} - are you even connected?'.format(all_erratas_index_url))
         sys.exit()
 
-
+        
 def fetch_from_website(home_url, threads_count, only_latest_version=True):
     try:
         all_erratas = get_errata_pages(home_url + 'errata.html')
