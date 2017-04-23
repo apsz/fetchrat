@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 
 
+# wrapper for unittest
+def get_input(text):
+    return input(text)
+
+
 def get_str(msg, input_type='string', valid=None, default=None, min_len=0, max_len=30):
     msg += ' [{}]:'.format(default) if default else ': '
     while True:
-        user_input = input(msg)
+        user_input = get_input(msg)
         if not user_input:
             if default:
                 return default
@@ -16,6 +21,7 @@ def get_str(msg, input_type='string', valid=None, default=None, min_len=0, max_l
             if valid:
                 if user_input in valid:
                     return user_input
+                print('Not in valid range.')
                 continue
             return user_input
         else:
@@ -26,7 +32,7 @@ def get_int(msg, input_type='integer', default=None, min_val=0, max_val=100):
     msg += ' [{}]:'.format(default) if default else ': '
     while True:
         try:
-            user_input = input(msg)
+            user_input = get_input(msg)
             if not user_input and default:
                 return default
             user_input = int(user_input)
@@ -36,4 +42,3 @@ def get_int(msg, input_type='integer', default=None, min_val=0, max_val=100):
             print('{} must be between {} and {}.'.format(input_type, min_val, max_val))
         except ValueError:
             print('Not an integer.')
-
