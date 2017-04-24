@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# TODO: refactor, list items display limit
+# TODO: refactor, list items display limit, auto handling new version
 # TODO IDEAS OO? switch to async/aiohttp?
 
 
