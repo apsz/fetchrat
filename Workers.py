@@ -41,6 +41,7 @@ class ErrataLinksGatherer(threading.Thread):
                 self.issue_to_patchurl[version] = version_erratas
         except urllib.request.HTTPError as request_err:
             print('Error while reading errata page for version {}: {}'.format(version, request_err))
+            return False
 
 
 class DownloaderWorker(threading.Thread):
@@ -64,3 +65,4 @@ class DownloaderWorker(threading.Thread):
             urllib.request.urlretrieve(download_url, os.path.join(self.save_path, filename))
         except (urllib.request.HTTPError, EnvironmentError, IOError) as download_err:
             print('Error while downloading {}: {}'.format(filename, download_err))
+            return False
