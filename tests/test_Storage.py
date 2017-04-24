@@ -7,7 +7,7 @@ import collections
 import Storage
 
 
-def create_dummy_data(valid=True):
+def create_test_data(valid=True):
     versions = ['2.2', '5.1', '4.2', '6.1']
     patchnames = [c for c in 'qwertyuiop']
     patchlinks = [l for l in map(str, range(len(patchnames)))]
@@ -28,8 +28,8 @@ class TestStorage(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.valid_data = create_dummy_data()
-        cls.invalid_data = create_dummy_data(valid=False)
+        cls.valid_data = create_test_data()
+        cls.invalid_data = create_test_data(valid=False)
         cls.output_filename = os.path.join(os.path.dirname(__file__),
                                             'cached_erratas.xml')
 
