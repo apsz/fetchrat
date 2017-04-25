@@ -30,7 +30,7 @@ class TestFetchrat(unittest.TestCase):
         os.remove(cls.cached_erratas_path)
 
     def test01_update_all_erratas_success(self):
-        used_cached, data = fetchrat.get_data(7, False, True)
+        used_cached, data = fetchrat.get_data(7, False, True
         with self.assertRaises(SystemExit):
             fetchrat.quit(used_cached, data)
         self.assertFalse(used_cached)
