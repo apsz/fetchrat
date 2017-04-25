@@ -232,8 +232,8 @@ def quit(used_cached_file, current_data):
 
 
 def main():
-    print(WELCOME_HEADER)
     threads_count, force_cached, force_download = get_args()
+    print(WELCOME_HEADER)
     add_urllib_https_handler(ssl.PROTOCOL_SSLv23)
     used_cached_file, version_to_patches = get_data(threads_count, use_cashed=force_cached,
                                                     forced_update_all=force_download)
