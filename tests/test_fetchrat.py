@@ -2,6 +2,7 @@
 
 
 import os
+import argparse
 import ssl
 import unittest
 import unittest.mock
@@ -125,6 +126,26 @@ class TestFetchrat(unittest.TestCase):
     def test12_print_patches_get_choice_cancel_success(self, *ignore):
         return_val = fetchrat.print_patches_get_choice(self.patches_to_links)
         self.assertEquals(return_val, 'c')
+
+    @unittest.mock.patch('CmdUtils.get_str', return_value='output_folder')
+    @unittest.mock.patch('os.path.exists', return_value=True)
+    @unittest.mock.patch('os.path.isdir', return_value=True)
+    def test13_get_output_path_found_success(self, *ignore):
+        user_path = fetchrat.get_output_path()
+        self.assertEqual(user_path, 'output_folder')
+
+    def test14_get_args_regular_success(self, *ignore):
+        self.assertTupleEqual(fetchrat.get_args(), (7, False, False))
+
+    @unittest.mock.patch('argparse.ArgumentParser.parse_args',
+                return_value=argparse.Namespace(threads=19, cached=False, download_all=True))
+    def test15_get_args_regular_success(self, *ignore):
+        self.assertTupleEqual(fetchrat.get_args(), (19, False, True))
+
+    @unittest.mock.patch('argparse.ArgumentParser.parse_args',
+                return_value=argparse.Namespace(threads=20, cached=False, download_all=True))
+    def test16_get_args_max_threads_exceeded_success(self, *ignore):
+        self.assertTupleEqual(fetchrat.get_args(), (7, False, True))
 
 
 if __name__ == '__main__':
